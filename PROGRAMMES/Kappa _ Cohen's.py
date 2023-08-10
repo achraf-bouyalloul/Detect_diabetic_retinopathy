@@ -15,8 +15,8 @@ import csv
 from sklearn.metrics import cohen_kappa_score
 
 # Chemin vers les fichiers CSV de prédiction et de vérité terrain
-prediction_file = '/content/drive/MyDrive/resultat_test/prediction_total.csv'
-ground_truth_file = '/content/drive/MyDrive/resultat_test/submission_2.csv'
+prediction_file = 'chemin-fichier-csv' # chosi chemin de fichier csv de prediction
+ground_truth_file = 'chemin-fichier_csv' # chosi chemin de fichier csv  
 
 # Charger les prédictions à partir du fichier CSV
 predictions = {}

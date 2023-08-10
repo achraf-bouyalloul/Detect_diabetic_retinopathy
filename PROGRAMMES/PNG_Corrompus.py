@@ -47,7 +47,9 @@ def delete_corrupted_png_in_all_folders(root_directory):
             print(f"Traitement du dossier '{subfolder}'...")
             delete_corrupted_png_in_folder(subfolder_path)
 
+
+
 # Exemple d'utilisation :
 if __name__ == "__main__":
-    root_directory_path = "/content/drive/MyDrive/class 2015"
+    root_directory_path = "dossier-des-images" #dossier des images de data qui contient les dossier des classe (0 1 2 3 4)
     delete_corrupted_png_in_all_folders(root_directory_path)

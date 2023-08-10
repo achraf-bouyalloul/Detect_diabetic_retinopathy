@@ -32,7 +32,7 @@ def load_ben_color(path, sigmaX=10):
     return image
 
 # Charger l'image
-image_path = r"C:\Users\Pc\Desktop\data1\class\4\5b76117c4bcb.png"
+image_path = "chemin-d'image" #choisi le chmin d'image pour appliquer filtre
 img = load_ben_color(image_path, sigmaX=30)
 cv2.imshow("image", img)
 cv2.waitKey(0)

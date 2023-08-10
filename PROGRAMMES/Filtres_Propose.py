@@ -15,11 +15,10 @@ drive.mount('/content/drive')
 import os
 import cv2
 
-# Chemin vers le dossier contenant les images d'entraînement classées par classe
-train_data_dir = '/content/drive/MyDrive/datafinal'
-# Chemin vers le nouveau répertoire pour enregistrer les images filtrées
-filtered_data_dir = '/content/drive/MyDrive/data_finalV2'
 
+train_data_dir = 'chemin' # Chemin vers le dossier contenant les images d'entraînement classées par classe
+
+filtered_data_dir = "chemin"
 
 
 

@@ -2,9 +2,9 @@ import pandas as pd
 import os
 from PIL import Image
 
-csv_file = r"C:\Users\Pc\Desktop\testLabels15.csv"  # Replace with your CSV file path
-image_dir = r"C:\Users\Pc\Desktop\test_2015"       # Replace with your image directory path
-output_parent_dir = r"C:\Users\Pc\Desktop\test_classes_2015"  # Replace with your output parent directory path
+csv_file = "chemin-de-fichier-csv-contient-labels"  # Replace with your CSV file path
+image_dir = "dossier-contient-data"     # Replace with your image directory path
+output_parent_dir = "dossier-d'enregistriment"  # Replace with your output parent directory path
 
 # Read the CSV file into a DataFrame
 df = pd.read_csv(csv_file)
