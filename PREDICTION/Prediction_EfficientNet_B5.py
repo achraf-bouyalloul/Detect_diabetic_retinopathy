@@ -47,11 +47,17 @@ model.compile(optimizer='adam', loss='categorical_crossentropy', metrics=['accur
 # Compiler le modèle
 model.compile(optimizer=Adam(lr=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
 
+
+chemin_model="chemin-du-model" # choisi le chemin du model EffcientNET_B5  dans ce cas le model il trainer sur les images avec filtre
+
 # Charger les poids du modèle sauvegardés
-model.load_weights('/content/drive/MyDrive/model_weightsV2.h5')
+model.load_weights(chemin_model)
+
+chemin_image="chemin-image" # choisi le chemin d'image pour faire la prediction
 
 # Chemin vers le dossier contenant les images à prédire
-folder_path = '/content/drive/MyDrive/class 2015/0'
+folder_path = chemin_image
+
 
 # Liste des fichiers d'images dans le dossier
 image_files = os.listdir(folder_path)

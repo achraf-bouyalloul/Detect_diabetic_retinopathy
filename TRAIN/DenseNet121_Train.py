@@ -63,8 +63,12 @@ model = Model(inputs=base_model.input, outputs=predictions)
 # Compiler le modèle
 model.compile(optimizer=Adam(lr=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
 
+
+chemin_data="chemin-dossier-des-images" # choisier le dossier cintienr les cinq sossier de classe 0 1 2 3 4 (tu peut chosi filtre ou sans filtre)
+
+
 # Définir le chemin vers le dossier contenant les images d'entraînement classées par classe
-train_data_dir = '/content/drive/MyDrive/class_processed'
+train_data_dir = chemin_data
 # Utiliser le générateur d'images pour l'entraînement avec gestion des erreurs
 batch_size = 32
 train_datagen = ImageDataGenerator(rescale=1. / 255)
@@ -93,7 +97,10 @@ for epoch in range(num_epochs):
     # Call the training visualizer callback to plot training progress after each epoch
     training_visualizer.on_epoch_end(epoch, {'loss': loss, 'accuracy': accuracy})
 
+
+chemin_vers_model_weights="chemin-enregistrer-model-version_weights" # chemin ou tu peut enrgestrer votre model
+chemin_vers_model="chemin-enregistrer-model-version_weights" # chemin ou tu peut enrgestrer votre model
 # Après l'entraînement
-model.save_weights('/content/drive/MyDrive/model_weights_data15.h5')
+model.save_weights(chemin_vers_model_weights)
 # Sauvegarder le modèle entraîné
-model.save('/content/drive/MyDrive/model_weights_data15.h5')
+model.save(chemin_vers_model)

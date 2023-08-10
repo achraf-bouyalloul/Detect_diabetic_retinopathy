@@ -51,8 +51,11 @@ train_datagen = ImageDataGenerator(
     zoom_range=0.2,
     fill_mode='nearest')
 
+
+chemin_data="chemin-des-classes" # choisi chemin qui contient les deux classe besoin de trainer
+
 train_generator = train_datagen.flow_from_directory(
-    '/content/drive/MyDrive/data_ResNet',
+    chemin_data,
     target_size=input_shape[:2],
     batch_size=batch_size,
     class_mode='categorical')
@@ -84,27 +87,14 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
+chemin_vers_model_weights="chemin-enregistrer-model-version_weights" # chemin ou tu peut enrgestrer votre model
+chemin_vers_model="chemin-enregistrer-model-version_weights" # chemin ou tu peut enrgestrer votre model
+
+
 # Après l'entraînement
-model.save_weights('/content/drive/MyDrive/the_best_model/model_weights_effcientNET_3_4.h5')
+model.save_weights(chemin_vers_model_weights)
 # Sauvegarder le modèle entraîné
-model.save('/content/drive/MyDrive/the_best_model/model_trained_effcientNET_3_4.h5')
+model.save(chemin_vers_model)
 
-from tensorflow.keras.preprocessing import image
-import numpy as np
 
-# Charger une image de test
-test_image_path = '/content/drive/MyDrive/data_ResNet/4/001639a390f0.png'  # Remplacez par le chemin de votre image de test
-test_image = image.load_img(test_image_path, target_size=input_shape)
-test_image = image.img_to_array(test_image)
-test_image = np.expand_dims(test_image, axis=0)
-test_image = test_image / 255.0  # Normalisation des pixels
 
-# Faire la prédiction
-predictions = model.predict(test_image)
-predicted_class = np.argmax(predictions)
-
-# Afficher le résultat
-if predicted_class == 0:
-    print("Classe prédite : 3")
-else:
-    print("Classe prédite : 4")

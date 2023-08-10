@@ -34,11 +34,15 @@ predictions = Dense(5, activation='softmax')(x)  # 5 classes pour votre cas
 # Créer le modèle final
 model = Model(inputs=base_model.input, outputs=predictions)
 
+chemin_model="chemin_de_model" #choisi le chemin de model convanble de DensNet121 (filtre au sans filtre)
+
 # Charger les poids du modèle sauvegardés
-model.load_weights('/content/drive/MyDrive/model_weightsV2.h5')
+model.load_weights(chemin_model)
+
+chemin_image="chemin-image" #choisi le chemin d'image pour faire la prediction
 
 # Dossier contenant les images que vous souhaitez prédire
-image_path = '/content/drive/MyDrive/data_finalV2/2/000c1434d8d7.png'
+image_path = chemin_image
 
 image = Image.open(image_path)
 image = image.resize((input_shape[0], input_shape[1]))

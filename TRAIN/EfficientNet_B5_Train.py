@@ -19,8 +19,12 @@ from tensorflow.keras.models import Model
 from tensorflow.keras.preprocessing.image import ImageDataGenerator
 from tensorflow.keras.callbacks import ModelCheckpoint, CSVLogger
 
+
+
+chemin_data="chemin-de-dossier" #chemin de dossier contient les cinq dossiers se classe 0 1 2 3 4  (tu peut chosi avec filtre ou non )
+
 # Répertoire contenant vos données d'entraînement
-train_data_dir = '/content/drive/MyDrive/class_processed'
+train_data_dir = chemin_data
 
 # Nombre de classes dans votre ensemble de données
 num_classes = 5
@@ -57,15 +61,11 @@ train_generator = train_datagen.flow_from_directory(
     class_mode='categorical'
 )
 
+
+
+
 # Définir le nombre d'étapes par époque en fonction du nombre total d'images d'entraînement et de la taille du lot
 steps_per_epoch = train_generator.n // train_generator.batch_size
-
-# Callback pour sauvegarder le meilleur modèle selon la validation
-model_checkpoint = ModelCheckpoint('/content/drive/MyDrive/the_best_model/best_model_effcientnet_sansflitre.h5',
-                                   monitor='val_loss', save_best_only=True, save_weights_only=False, mode='min', verbose=1)
-
-# Callback pour enregistrer les métriques dans un fichier CSV
-csv_logger = CSVLogger('/content/drive/MyDrive/the_best_model/training_metrics_effcientnet_sansflitre.csv', append=False)
 
 
 # Entraîner le modèle sur l'ensemble de données d'entraînement en utilisant fit
@@ -82,13 +82,13 @@ for epoch in range(num_epochs):
     print("ici",epoch+1)
     print("\n")
 
-# Après l'entraînement
-model.save_weights('/content/drive/MyDrive/model_weights_effcientnet_sansfiltre.h5')
 
-# Sauvegarder uniquement l'architecture du modèle sans les poids
-model_json = model.to_json()
-with open('/content/drive/MyDrive/model_trained_effcientnet_sansfiltre.json', 'w') as json_file:
-    json_file.write(model_json)
+
+chemin_vers_model_weights="chemin-enregistrer-model-version_weights" # chemin ou tu peut enrgestrer votre model
+chemin_vers_model="chemin-enregistrer-model-version_weights" # chemin ou tu peut enrgestrer votre model
+
+# Après l'entraînement
+model.save_weights(chemin_vers_model_weights)
 
 # Sauvegarder uniquement les poids du modèle
-model.save_weights('/content/drive/MyDrive/model_weights_effcientnet_filtreV1.h5')
+model.save_weights(chemin_vers_model)

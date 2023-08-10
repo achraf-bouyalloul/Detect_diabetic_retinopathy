@@ -34,11 +34,16 @@ output = Dense(num_classes, activation='softmax')(x)
 # Créer le modèle final
 model = Model(inputs=base_model.input, outputs=output)
 
+
+chemin_model="chemin_de_model" # choisi le chemin de model Effcient soit clsse(1_2) ou classe(3_4)
+
 # Charger les poids du modèle entraîné
-model.load_weights('/content/drive/MyDrive/the_best_model/model_trained_effcientNET_3_4.h5')
+model.load_weights(chemin_model)
+
+chemin_dossier_images="chemin-de-dossier-des-images" #choisi le chemin de dossier des images
 
 # Chemin vers le dossier contenant les images à prédire
-folder_path = '/content/drive/MyDrive/class_processed/4'
+folder_path = chemin_dossier_images
 
 # Liste des fichiers d'images dans le dossier
 image_files = os.listdir(folder_path)

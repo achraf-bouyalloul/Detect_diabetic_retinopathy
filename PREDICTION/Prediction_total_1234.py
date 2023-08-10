@@ -86,10 +86,10 @@ def eff(chemin,image_path):
   p=int(predicted_class_index)
   return p
 
-chemin_densNET='/content/drive/MyDrive/the_best_model/model_weightsV2.h5'
-chemin_eff1_2='/content/drive/MyDrive/the_best_model/model_weights_effcientNET_1_2.h5'
-chemin_eff3_4='/content/drive/MyDrive/the_best_model/model_weights_effcientNET_3_4.h5'
-folder_path = '/content/drive/MyDrive/test_images'
+chemin_densNET='chemin1' # choisi chemin de model DensNET121 filtre ou sans filtre
+chemin_eff1_2='chemin2' # choisi chemin de model EfficientNETB0 qui trainer sur la classe 1 et 2
+chemin_eff3_4='chemin3' # choisi chemin de model EfficientNETB0 qui trainer sur la classe 3 et 4
+folder_path = 'chemin4' # choisi chemin de dossier qui contient les images
 
 import os
 import csv
@@ -115,14 +115,18 @@ with open(csv_filename, mode='w', newline='') as csv_file:
             pre_1 = eff(chemin_eff1_2, image_path)
             if pre_1 == 0:
                 writer.writerow({'image': image_file[:-4], 'level': 1})
+                print("la predection de l'image",image_file,"est 1:")
             else:
                 writer.writerow({'image': image_file[:-4], 'level': 2})
+                print("la predection de l'image", image_file, "est 2:")
         elif pre == 3:
             pre_2 = eff(chemin_eff3_4, image_path)
             if pre_2 == 0:
                 writer.writerow({'image': image_file[:-4], 'level': 3})
+                print("la predection de l'image", image_file, "est 3:")
             else:
                 writer.writerow({'image': image_file[:-4], 'level': 4})
+                print("la predection de l'image", image_file, "est 4:")
         else:
             writer.writerow({'image': image_file[:-4], 'level': pre})
 
