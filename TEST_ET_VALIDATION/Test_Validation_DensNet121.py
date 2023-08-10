@@ -20,16 +20,6 @@ from keras.optimizers import Adam
 from keras.preprocessing.image import ImageDataGenerator
 from keras.callbacks import Callback
 
-import os
-import matplotlib.pyplot as plt
-import numpy as np
-from keras.applications import DenseNet121
-from keras.models import Model
-from keras.layers import Dense, GlobalAveragePooling2D
-from keras.optimizers import Adam
-from keras.preprocessing.image import ImageDataGenerator
-from keras.callbacks import Callback
-
 # Dimensions des images en entrée du modèle DenseNet
 input_shape = (224, 224, 3)
 
@@ -47,11 +37,19 @@ model = Model(inputs=base_model.input, outputs=predictions)
 # Compiler le modèle
 model.compile(optimizer=Adam(lr=0.001), loss='categorical_crossentropy', metrics=['accuracy'])
 
+
+chemin_model="chemin-model-weights-h5" #chemin ou se trouve le fichier de model enrgistrer
+
+
 # Charger les poids du modèle sauvegardés
-model.load_weights('/content/drive/MyDrive/model_weightsV2.h5')
+model.load_weights(chemin_model)
+
+
+chemin_data_test="chemin-data-de-test" # # Définir le chemin vers le dossier contenant les images de test classées par classe
+
 
 # Définir le chemin vers le dossier contenant les images de test classées par classe
-test_data_dir = '/content/drive/MyDrive/class 2015'
+test_data_dir = chemin_data_test
 
 # Utiliser le générateur d'images pour le test avec gestion des erreurs
 batch_size = 32
@@ -95,22 +93,7 @@ class TrainingVisualizer(Callback):
 
         plt.show()
 
-# Sauvegarder le modèle entraîné
-model.save('/content/drive/MyDrive/modele_évalué.h5')
-
-# Charger le modèle à partir du fichier sauvegardé
-from keras.models import load_model
-
-model = load_model('/chemin/vers/votre/dossier/de/sauvegarde_du_modele_évalué.h5')
-
-# Utiliser le callback de visualisation pendant l'entraînement
-training_visualizer = TrainingVisualizer()
-model.fit_generator(
-    train_generator,
-    steps_per_epoch=steps_per_epoch,
-    epochs=num_epochs,
-    callbacks=[training_visualizer]
-)
+chemin_vers_model="chemin-enregistrer-model-version_weights" # chemin ou tu peut enrgestrer votre model version final
 
 # Sauvegarder le modèle entraîné
-model.save('/chemin/vers/votre/dossier/de/sauvegarde_du_modele_évaluéVfinal.h5')
+model.save(chemin_vers_model)
